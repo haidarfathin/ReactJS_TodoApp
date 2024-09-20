@@ -3,43 +3,61 @@ import BackgroundHeading from "./components/BackgroundHeading";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import TodoList from "./components/TodoList";
+import Swal from "sweetalert2";
+
+
+interface Todo {
+  id: number;
+  text: string;
+  isCompleted: boolean;
+}
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   const handleAddTodo = (todoText: string) => {
-    if (todos.length >= 3) {
-      alert("log in to add more todos");
-    } else {
-      if (todoText.trim() === "") {
-        alert("Please Enter text");
-        return;
-      }
-
-      setTodos((prev) => [
-        ...prev,
-        {
-          id: prev.length + 1,
-          text: todoText,
-          isCompleted: false,
-        },
-      ]);
+    if (todoText.trim() === "") {
+      Swal.fire({
+        icon: "warning",
+        title: "Oops...",
+        text: "Please enter some text!",
+      });
+      return;
     }
+
+    setTodos((prev) => [
+      ...prev,
+      {
+        id: prev.length + 1,
+        text: todoText,
+        isCompleted: false,
+      },
+    ]);
   };
 
-  const handleToggleTodo = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, isCompleted: !todo.isCompleted };
-        }
-        return todo;
-      })
+  const handleToggleTodo = (id: number) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
     );
   };
 
-  const handleDeleteTodo = (id) => {
-    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  const handleDeleteTodo = (id: number) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setTodos((prev) => prev.filter((todo) => todo.id !== id));
+        Swal.fire("Deleted!", "Your todo has been deleted.", "success");
+      }
+    });
   };
 
   return (
