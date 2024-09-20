@@ -1,51 +1,24 @@
-# React + TypeScript + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TodoApp ini adalah aplikasi sederhana yang dibangun menggunakan **React.js** dan **Tailwind CSS**. Aplikasi ini dirancang untuk membantu pengguna mengelola pekerjaan harian dengan mudah. Fitur-fitur yang tersedia di aplikasi ini termasuk menambahkan todo, mencentang pekerjaan yang sudah selesai, menghapus pekerjaan, dan memberikan peringatan apabila pekerjaan yang dimasukkan kosong.
 
-Currently, two official plugins are available:
+## Fitur
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Tambah Todo**: Pengguna dapat menambahkan pekerjaan baru yang perlu dilakukan. Jika pengguna mencoba menambahkan pekerjaan tanpa teks, akan muncul peringatan menggunakan SweetAlert.
+- **Tandai Pekerjaan Selesai**: Pekerjaan yang sudah diselesaikan dapat ditandai dengan mencentang checkbox yang tersedia.
+- **Hapus Todo**: Pekerjaan yang sudah tidak diperlukan bisa dihapus dari daftar.
+- **Peringatan Todo Kosong**: Jika pengguna mencoba menambahkan todo dengan teks kosong, aplikasi akan menampilkan pesan peringatan menggunakan SweetAlert.
 
-## Expanding the ESLint configuration
+## Teknologi yang Digunakan
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React.js**
+- **Tailwind CSS**
+- **SweetAlert**
 
-- Configure the top-level `parserOptions` property like this:
+## What's Next?
+- Menambahkan fitur login dan daftar 
+- Menyimpan data ke database
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Overview
+https://github.com/user-attachments/assets/7cd2dcd8-699a-4c9e-9497-3bdb08ca34f3
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# ReactJS_TodoApp
