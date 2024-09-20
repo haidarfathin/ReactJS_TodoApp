@@ -8,10 +8,10 @@ export default function Sidebar({ todos, handleAddTodo }) {
     pt-[18px] pb-[28px]"
     >
       <AddTodoForm todos={todos} handleAddTodo={handleAddTodo} />
-      <div className="mt-auto space-y-2">
+      {/* <div className="mt-auto space-y-2">
         <Button buttonType="secondary">Log In</Button>
         <Button buttonType="secondary">Sign Up</Button>
-      </div>
+      </div> */}
     </section>
   );
 }
